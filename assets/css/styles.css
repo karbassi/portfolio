@@ -116,26 +116,18 @@ img {
   align-items: center;
   font-weight: 800;
 }
-@media screen and (max-width: 768px) {
-  .nav-menu {
-    position: fixed;
-    bottom: -100%;
-    left: 0;
-    padding: 35% 0;
-    width: 100%;
-    transition: 0.5s;
-  }
+.nav-list {
+  display: none;
 }
-
 .nav-logo {
   font-size: var(--normal-font-size);
   color: var(--white-color);
 }
-.nav-list {
+.nav-phone-list {
   text-align: center;
-  text-justify: center;
+  margin: auto;
 }
-.nav-item {
+.nav-phone-item {
   margin-bottom: 3rem;
 }
 .nav-link {
@@ -153,6 +145,19 @@ img {
   top: 2.125rem;
   background-color: var(--first-color);
 }
+.nav-menu-phone {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  backdrop-filter: blur(10px);
+  z-index: var(--z-fixed);
+}
 
 .nav-toggle {
   font-size: 1.5rem;
@@ -166,6 +171,9 @@ img {
 
 /*---meida for header---*/
 @media screen and (min-width: 768px) {
+  .nav-menu-phone {
+    display: none;
+  }
   .nav {
     height: 4rem;
   }
