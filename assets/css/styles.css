@@ -23,6 +23,7 @@
   --z-back: -10;
   --z-normal: 1;
   --z-tooltip: 10;
+  --z-cursor: 99;
   --z-fixed: 100;
   --z-modal: 1000;
 }
@@ -41,6 +42,7 @@ body {
   background-color: var(--black-color);
   color: var(--white-color);
   font-weight: 800;
+  cursor: none;
 }
 
 h1,
@@ -56,12 +58,37 @@ ul {
 
 a {
   text-decoration: none;
+  cursor: none;
 }
 
 img {
   max-width: 100%;
   height: auto;
 }
+
+/*Cursor*/
+.cursor {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: absolute;
+  padding: 0;
+  z-index: var(--z-cursor);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  transition-property: background, transform;
+  transform-origin: 200% 200%;
+  backdrop-filter: blur(10px);
+}
+
+.link-grow {
+  transform: scale(1.3);
+  background: var(--first-color);
+  border: none;
+}
+
 /*Layout*/
 .background {
   width: 100%;
@@ -100,7 +127,6 @@ img {
   top: 0;
   left: 0;
   z-index: var(--z-fixed);
-  backdrop-filter: blur(5px);
 }
 
 @media screen and (min-width: 768px) {
@@ -134,18 +160,11 @@ img {
 .nav-link {
   color: var(--text-color);
 }
-.nav-link:hover {
-  position: relative;
+
+.hovered-link {
+  color: black;
 }
-.nav-link:hover::after {
-  position: absolute;
-  content: '';
-  width: 1.5rem;
-  height: 0.1875rem;
-  left: 0.125rem;
-  top: 2.125rem;
-  background-color: var(--first-color);
-}
+
 .nav-menu-phone {
   position: fixed;
   display: flex;
@@ -285,15 +304,20 @@ img {
   flex-direction: column;
   padding-bottom: 1rem;
 }
+
 .hero-social-icon {
   margin-bottom: 2rem;
-  font-size: 1.35rem;
-  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  cursor: none;
   z-index: var(--z-tooltip);
+  transform: translate(100% 100%);
 }
 
-.hero-social-icon:hover {
-  color: var(--first-color);
+.hovered-icon {
+  font-size: 28px;
+  color:black;
+  z-index: var(--z-fixed);
 }
 
 /*media hero */
@@ -362,7 +386,7 @@ img {
   display: inline-block;
   position: relative;
 }
-.work-title:before {
+.work-title::before {
   content: '';
   width: 100%;
   border-bottom: solid 2px var(--first-color);
@@ -370,7 +394,7 @@ img {
   left: -150%;
   top: 50%;
 }
-.work-title:after {
+.work-title::after {
   content: '';
   width: 100%;
   border-bottom: solid 2px var(--first-color);
